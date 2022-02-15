@@ -25,12 +25,13 @@ class TrackerViewController: UIViewController {
 	
 	
 	lazy var countAddButton: UIButton = {
-		let button = UIButton(type: .system)
+		let button = CircleButton()
 
 		button.setTitle("Have Fun", for: .normal)
-		button.configuration = .borderedTinted()
-		button.configuration?.baseForegroundColor = .black
-		button.configuration?.buttonSize = .large
+		button.titleEdgeInsets = .init(top: 10, left: 10, bottom: 10, right: 10)
+		button.layer.backgroundColor = UIColor.lightGray.cgColor
+		button.layer.borderWidth = 2
+		button.layer.borderColor = UIColor.black.cgColor
 		
 		
 		return button
@@ -87,8 +88,9 @@ class TrackerViewController: UIViewController {
 		NSLayoutConstraint.activate([
 			stackView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
 			stackView.leftAnchor.constraint(equalTo: self.view.leftAnchor),
-			stackView.rightAnchor.constraint(equalTo: self.view.rightAnchor)
+			stackView.rightAnchor.constraint(equalTo: self.view.rightAnchor),
 			
+			countAddButton.
 			
 //			self.countAddButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
 //			self.countAddButton.centerYAnchor.constraint(equalTo: self.view.centerYAnchor, constant: 40),
