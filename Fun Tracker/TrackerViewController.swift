@@ -67,21 +67,21 @@ class TrackerViewController: UIViewController {
 		
 		self.updateCount()
 		
-		let stackView = UIStackView(arrangedSubviews: [countAddButton, funText, label, countResetButton])
+		funText.text = " "
+		
+		let stackView = UIStackView(arrangedSubviews: [countAddButton, funText, label])
 		stackView.axis = .vertical
 		stackView.spacing = 10
 		stackView.alignment = .center
 		
 //		self.view.addSubviewWithContraints(self.countAddButton)
 //		self.view.addSubviewWithContraints(self.label)
-//		self.view.addSubviewWithContraints(self.countResetButton)
 //		self.view.addSubviewWithContraints(self.funText)
 		
+		self.view.addSubviewWithConstraints(self.countResetButton)
 		self.view.addSubviewWithConstraints(stackView)
 		
 		self.countAddButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
-		
-		
 		self.countResetButton.addTarget(self, action: #selector(resetCount), for: .touchUpInside)
 		
 		
@@ -90,7 +90,9 @@ class TrackerViewController: UIViewController {
 			stackView.leftAnchor.constraint(equalTo: self.view.leftAnchor),
 			stackView.rightAnchor.constraint(equalTo: self.view.rightAnchor),
 			
-			countAddButton.widthAnchor.constraint(equalTo: stackView.widthAnchor, multiplier: 0.6)
+			countAddButton.widthAnchor.constraint(equalTo: stackView.widthAnchor, multiplier: 0.6),
+			countResetButton.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
+			countResetButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor)
 			
 //			self.countAddButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
 //			self.countAddButton.centerYAnchor.constraint(equalTo: self.view.centerYAnchor, constant: 40),
@@ -124,8 +126,20 @@ class TrackerViewController: UIViewController {
 	}
 	
 	@objc func resetCount() {
-		self.count = 0
-		self.funText.text = nil
+		
+		let alertController = UIAlertController(title: "Are you sure you want to reset the count?", message: "This action cannot be undone.", preferredStyle: .alert)
+		alertController.addAction(.init(title: "Delete", style: .destructive, handler: { _ in
+			self.count = 0
+			self.funText.text = " "
+			alertController.dismiss(animated: true, completion: nil)
+		}))
+		
+		alertController.addAction(.init(title: "Cancel", style: .cancel, handler: { _ in
+			alertController.dismiss(animated: true, completion: nil)
+		}))
+		
+		self.present(alertController, animated: true, completion: nil)
+		
 	}
 
 }
