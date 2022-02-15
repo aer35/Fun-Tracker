@@ -16,9 +16,8 @@ class CircleButton : UIButton {
 		
 
 		NSLayoutConstraint.activate([
-		
-			self.heightAnchor.constraint(equalTo: self.
-		
+			
+			self.heightAnchor.constraint(equalTo: self.widthAnchor)
 		])
 		
 	}

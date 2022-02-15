@@ -25,16 +25,14 @@ class TrackerViewController: UIViewController {
 	
 	
 	lazy var countAddButton: UIButton = {
-		let button = CircleButton()
+		let addButton = CircleButton()
 
-		button.setTitle("Have Fun", for: .normal)
-		button.titleEdgeInsets = .init(top: 10, left: 10, bottom: 10, right: 10)
-		button.layer.backgroundColor = UIColor.lightGray.cgColor
-		button.layer.borderWidth = 2
-		button.layer.borderColor = UIColor.black.cgColor
+		addButton.setTitle("Have Fun", for: .normal)
+		addButton.titleEdgeInsets = .init(top: 10, left: 10, bottom: 10, right: 10)
+		addButton.layer.backgroundColor = UIColor.systemCyan.cgColor
 		
 		
-		return button
+		return addButton
 	}()
 	
 	lazy var countResetButton: UIButton = {
@@ -69,7 +67,7 @@ class TrackerViewController: UIViewController {
 		
 		self.updateCount()
 		
-		let stackView = UIStackView(arrangedSubviews: [funText, label, countAddButton, countResetButton])
+		let stackView = UIStackView(arrangedSubviews: [countAddButton, funText, label, countResetButton])
 		stackView.axis = .vertical
 		stackView.spacing = 10
 		stackView.alignment = .center
@@ -82,6 +80,8 @@ class TrackerViewController: UIViewController {
 		self.view.addSubviewWithConstraints(stackView)
 		
 		self.countAddButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+		
+		
 		self.countResetButton.addTarget(self, action: #selector(resetCount), for: .touchUpInside)
 		
 		
@@ -90,7 +90,7 @@ class TrackerViewController: UIViewController {
 			stackView.leftAnchor.constraint(equalTo: self.view.leftAnchor),
 			stackView.rightAnchor.constraint(equalTo: self.view.rightAnchor),
 			
-			countAddButton.
+			countAddButton.widthAnchor.constraint(equalTo: stackView.widthAnchor, multiplier: 0.6)
 			
 //			self.countAddButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
 //			self.countAddButton.centerYAnchor.constraint(equalTo: self.view.centerYAnchor, constant: 40),
@@ -113,7 +113,7 @@ class TrackerViewController: UIViewController {
 		self.count += 1
 		self.funText.text = Self.funWords.randomElement()
 		self.funText.layer.opacity = 1
-		UIView.animate(withDuration: 1, delay: 1, options: [.curveEaseOut, .transitionCurlUp]) {
+		UIView.animate(withDuration: 1, delay: 0.5, options: [.curveEaseIn, .curveEaseOut, .transitionCurlUp]) {
 			self.funText.layer.opacity = 0
 			
 		}
