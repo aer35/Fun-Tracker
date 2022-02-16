@@ -13,6 +13,7 @@
 		C48D7CF1275ADB3C00DFE749 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C48D7CF0275ADB3C00DFE749 /* Assets.xcassets */; };
 		C48D7CF4275ADB3C00DFE749 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C48D7CF2275ADB3C00DFE749 /* LaunchScreen.storyboard */; };
 		C4C0A3C327BC45AD003F66EF /* CircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C0A3C227BC45AD003F66EF /* CircleButton.swift */; };
+		C4C0A3C527BD9885003F66EF /* UIImage+Gen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C0A3C427BD9885003F66EF /* UIImage+Gen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		C48D7CF3275ADB3C00DFE749 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C48D7CF5275ADB3C00DFE749 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C4C0A3C227BC45AD003F66EF /* CircleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButton.swift; sourceTree = "<group>"; };
+		C4C0A3C427BD9885003F66EF /* UIImage+Gen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Gen.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				C48D7CF2275ADB3C00DFE749 /* LaunchScreen.storyboard */,
 				C48D7CF5275ADB3C00DFE749 /* Info.plist */,
 				C4C0A3C227BC45AD003F66EF /* CircleButton.swift */,
+				C4C0A3C427BD9885003F66EF /* UIImage+Gen.swift */,
 			);
 			path = "Fun Tracker";
 			sourceTree = "<group>";
@@ -137,6 +140,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4C0A3C527BD9885003F66EF /* UIImage+Gen.swift in Sources */,
 				C48D7CEC275ADB3B00DFE749 /* TrackerViewController.swift in Sources */,
 				C48D7CE8275ADB3B00DFE749 /* AppDelegate.swift in Sources */,
 				C48D7CEA275ADB3B00DFE749 /* SceneDelegate.swift in Sources */,
