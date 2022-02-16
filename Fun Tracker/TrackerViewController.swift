@@ -21,7 +21,7 @@ class TrackerViewController: UIViewController {
 	static let countKey = "count"
 	
 	//Old funwords array
-//	static let funWords = ["Wow", "Are you ashamed?", "Looks like you did a good job", "Hooray!", "💦💦💦", "Hello World", "Send help I've been trapper here writing these for 2 weeks. Oh lord HES COMING", "Haha funny man did the thing"]
+	static let funWords = ["Wow", "Are you ashamed?", "Looks like you did a good job", "Hooray!", "💦💦💦", "Hello World", "Send help I've been trapper here writing these for 2 weeks. Oh lord HES COMING", "Haha funny man did the thing"]
 	
 	
 	lazy var countAddButton: UIButton = {
@@ -70,13 +70,14 @@ class TrackerViewController: UIViewController {
 		return label
 	}()
 	
-	func getFunText() -> UILabel{
+	func getFunText() async -> String {
 			
-		funLabel.text = "TODO GET FUNTEXT"
+		let text = "PLACEHOLDER"
+				
+//		let text = TrackerViewController.funWords.randomElement()
+				
 		
-		
-		return funLabel
-		
+		return text
 	}
 
 	
@@ -133,10 +134,20 @@ class TrackerViewController: UIViewController {
 		
 	}
 	
+	
+	// ObjC doesnt have a concept of concurrency so we need to throw the asynch await into a differnt function and have ObjC call that therefore hiding async await
 	@objc func buttonTapped() {
+		Task {
+			await self.buttonTappedHandler()
+		}
+	}
+	
+	// This function just hides async await from ObjC but
+	@MainActor
+	func buttonTappedHandler() async {
 		self.count += 1
 //		self.funText.text = Self.funWords.randomElement()
-		getFunText()
+		funLabel.text = await getFunText()
 		self.funLabel.layer.opacity = 1
 		UIView.animate(withDuration: 1, delay: 0.5, options: [.curveEaseIn, .curveEaseOut, .transitionCurlUp]) {
 			self.funLabel.layer.opacity = 0
