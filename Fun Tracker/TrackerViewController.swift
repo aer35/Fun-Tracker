@@ -70,7 +70,14 @@ class TrackerViewController: UIViewController {
 		return label
 	}()
 	
-	
+	func getFunText() -> UILabel{
+			
+		funLabel.text = "TODO GET FUNTEXT"
+		
+		
+		return funLabel
+		
+	}
 
 	
 
@@ -82,7 +89,7 @@ class TrackerViewController: UIViewController {
 		
 		self.updateCount()
 		
-//		funText.text = " "
+		funLabel.text = " "
 		
 		let stackView = UIStackView(arrangedSubviews: [countAddButton, label, funLabel])
 		stackView.axis = .vertical
@@ -128,7 +135,8 @@ class TrackerViewController: UIViewController {
 	
 	@objc func buttonTapped() {
 		self.count += 1
-		self.funText.text = Self.funWords.randomElement()
+//		self.funText.text = Self.funWords.randomElement()
+		getFunText()
 		self.funLabel.layer.opacity = 1
 		UIView.animate(withDuration: 1, delay: 0.5, options: [.curveEaseIn, .curveEaseOut, .transitionCurlUp]) {
 			self.funLabel.layer.opacity = 0
