@@ -19,7 +19,7 @@ class TrackerViewController: UIViewController {
 	override var supportedInterfaceOrientations: UIInterfaceOrientationMask {.portrait}
 	
 	static let countKey = "count"
-	static let funWords = ["Wow", "Are you ashamed?", "Looks like you did a good job"]
+	static let funWords = ["Wow", "Are you ashamed?", "Looks like you did a good job", "Hooray!", "💦💦💦", "Hello World", "Send help I've been trapper here writing these for 2 weeks. Oh lord HES COMING", "Haha funny man did the thing"]
 
 	
 	
@@ -28,8 +28,12 @@ class TrackerViewController: UIViewController {
 		let addButton = CircleButton()
 
 		addButton.setTitle("Have Fun", for: .normal)
-		addButton.titleEdgeInsets = .init(top: 10, left: 10, bottom: 10, right: 10)
-		addButton.layer.backgroundColor = UIColor.systemCyan.cgColor
+		
+		// Can use this line to modify the label color inside the button. ".label" will set the system color based on the system theme.
+//		addButton.setTitleColor(.label, for: .normal)
+		
+//		addButton.layer.backgroundColor = UIColor.systemCyan.cgColor
+		addButton.setBackgroundImage(.generateImage(from: .systemCyan), for: .normal)
 		
 		
 		return addButton
@@ -40,8 +44,8 @@ class TrackerViewController: UIViewController {
 
 		button.setTitle("Mom knows my password", for: .normal)
 		button.configuration = .filled()
-		button.configuration?.baseBackgroundColor = .black
-		button.configuration?.baseForegroundColor = .red
+		button.configuration?.baseBackgroundColor = .secondarySystemBackground
+		button.configuration?.baseForegroundColor = .systemRed
 		button.configuration?.buttonSize = .small
 		
 		return button
@@ -56,20 +60,28 @@ class TrackerViewController: UIViewController {
 		}
 	}
 	
-	lazy var funText = UILabel()
+	
+	lazy var funText: UILabel = {
+		let label = UILabel()
+		
+		label.numberOfLines = 0
+		label.textAlignment = .center
+		
+		return label
+	}()
 	
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
 		
-		self.view.backgroundColor = .white
+		self.view.backgroundColor = .systemBackground
 		
 		self.updateCount()
 		
 		funText.text = " "
 		
-		let stackView = UIStackView(arrangedSubviews: [countAddButton, funText, label])
+		let stackView = UIStackView(arrangedSubviews: [countAddButton, label, funText])
 		stackView.axis = .vertical
 		stackView.spacing = 10
 		stackView.alignment = .center
@@ -86,7 +98,7 @@ class TrackerViewController: UIViewController {
 		
 		
 		NSLayoutConstraint.activate([
-			stackView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
+			countAddButton.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
 			stackView.leftAnchor.constraint(equalTo: self.view.leftAnchor),
 			stackView.rightAnchor.constraint(equalTo: self.view.rightAnchor),
 			
