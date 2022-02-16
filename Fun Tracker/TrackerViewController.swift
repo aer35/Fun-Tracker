@@ -19,9 +19,9 @@ class TrackerViewController: UIViewController {
 	override var supportedInterfaceOrientations: UIInterfaceOrientationMask {.portrait}
 	
 	static let countKey = "count"
-	static let funWords = ["Wow", "Are you ashamed?", "Looks like you did a good job", "Hooray!", "💦💦💦", "Hello World", "Send help I've been trapper here writing these for 2 weeks. Oh lord HES COMING", "Haha funny man did the thing"]
-
 	
+	//Old funwords array
+//	static let funWords = ["Wow", "Are you ashamed?", "Looks like you did a good job", "Hooray!", "💦💦💦", "Hello World", "Send help I've been trapper here writing these for 2 weeks. Oh lord HES COMING", "Haha funny man did the thing"]
 	
 	
 	lazy var countAddButton: UIButton = {
@@ -61,7 +61,7 @@ class TrackerViewController: UIViewController {
 	}
 	
 	
-	lazy var funText: UILabel = {
+	lazy var funLabel: UILabel = {
 		let label = UILabel()
 		
 		label.numberOfLines = 0
@@ -69,6 +69,9 @@ class TrackerViewController: UIViewController {
 		
 		return label
 	}()
+	
+	
+
 	
 
     override func viewDidLoad() {
@@ -79,9 +82,9 @@ class TrackerViewController: UIViewController {
 		
 		self.updateCount()
 		
-		funText.text = " "
+//		funText.text = " "
 		
-		let stackView = UIStackView(arrangedSubviews: [countAddButton, label, funText])
+		let stackView = UIStackView(arrangedSubviews: [countAddButton, label, funLabel])
 		stackView.axis = .vertical
 		stackView.spacing = 10
 		stackView.alignment = .center
@@ -126,9 +129,9 @@ class TrackerViewController: UIViewController {
 	@objc func buttonTapped() {
 		self.count += 1
 		self.funText.text = Self.funWords.randomElement()
-		self.funText.layer.opacity = 1
+		self.funLabel.layer.opacity = 1
 		UIView.animate(withDuration: 1, delay: 0.5, options: [.curveEaseIn, .curveEaseOut, .transitionCurlUp]) {
-			self.funText.layer.opacity = 0
+			self.funLabel.layer.opacity = 0
 			
 		}
 	}
@@ -142,7 +145,7 @@ class TrackerViewController: UIViewController {
 		let alertController = UIAlertController(title: "Are you sure you want to reset the count?", message: "This action cannot be undone.", preferredStyle: .alert)
 		alertController.addAction(.init(title: "Delete", style: .destructive, handler: { _ in
 			self.count = 0
-			self.funText.text = " "
+			self.funLabel.text = " "
 			alertController.dismiss(animated: true, completion: nil)
 		}))
 		
