@@ -72,13 +72,18 @@ class TrackerViewController: UIViewController {
 	
 	func getFunText() async -> String {
 			
-		let text = "PLACEHOLDER"
+//		let text = "PLACEHOLDER"
 				
 //		let text = TrackerViewController.funWords.randomElement()
-				
-		
-		return text
-	}
+		do {
+			let text = try await FunwordsRequest().getFunwords()
+			return text
+		} catch {
+			debugPrint(error)
+			return "WARNING! SOMETHING WENT WRONG! ERRORS HAVE BEEN TROWN! NUKES HAVE BEEN LAUNCHED! PLEASE EAT YOUR VEGETABLES!"
+		}
+			
+}
 
 	
 
